@@ -1,14 +1,15 @@
 package unhas.informatics.listview;
 
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -53,6 +54,11 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Toast.makeText(MainActivity.this, heroes.get(i).getName(),
                         Toast.LENGTH_SHORT).show();
+                Intent objectIntent = new Intent(MainActivity.this, MyIntent.class);
+                objectIntent.putExtra(MyIntent.HERO_NAME, heroes.get(i).getName());
+                objectIntent.putExtra(MyIntent.HERO_DESC, heroes.get(i).getDescription());
+                objectIntent.putExtra(MyIntent.HERO_PHOTO, heroes.get(i).getPhoto());
+                startActivity(objectIntent);
             }
         });
     }
