@@ -8,7 +8,6 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -16,12 +15,9 @@ import java.util.ArrayList;
 import cz.msebera.android.httpclient.Header;
 
 public class MainViewModel extends ViewModel {
-    private static final String API_KEY = "8969b052e0ba201c4a8c0edf8d75a8f5";
+    private static final String API_KEY = "c62ba897fef010bea8ebf378ac2f71d9";
     //alternatif API_KEY
     //private static final String API_KEY = "2adbb675bdd05bfd3b547a01f9938462";
-
-    //url to get weather info
-    //String url = "https://api.openweathermap.org/data/2.5/group?id=" + cities + "&units=metric&appid=" + API_KEY;
 
     private MutableLiveData<ArrayList<WeatherItems>> listWeathers = new MutableLiveData<>();
 
@@ -33,20 +29,22 @@ public class MainViewModel extends ViewModel {
         return listWeathers;
     }
 
-    public void setListWeathers(MutableLiveData<ArrayList<WeatherItems>> listWeathers) {
-        this.listWeathers = listWeathers;
+    public void setListWeathers(MutableLiveData<ArrayList<WeatherItems>> listWeather) {
+        this.listWeathers = listWeather;
     }
 
-    public void setWeather(final String cities ) {
+    void setWeather (final String cities){
+        //Request via Web API
         AsyncHttpClient client = new AsyncHttpClient();
         final ArrayList<WeatherItems> listItems = new ArrayList<>();
         String url = "https://api.openweathermap.org/data/2.5/group?id="
                 + cities + "&units=metric&appid=" + API_KEY;
 
+
         client.get(url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                try {
+                try{
                     String result = new String(responseBody);
                     JSONObject responseObject = new JSONObject(result);
                     JSONArray list = responseObject.getJSONArray("list");
@@ -56,8 +54,9 @@ public class MainViewModel extends ViewModel {
                         listItems.add(weatherItems);
                     }
                     listWeathers.postValue(listItems);
-                } catch (Exception e) {
-                    Log.d("Exception: ", e.getMessage());
+
+                }catch (Exception e){
+                    Log.d("Exception", e.getMessage());
                 }
             }
 

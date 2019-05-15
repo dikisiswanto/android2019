@@ -10,7 +10,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder> {
-
     private ArrayList<WeatherItems> mData = new ArrayList<>();
 
     public void setData(ArrayList<WeatherItems> items) {
@@ -41,13 +40,13 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherV
         TextView textViewTemperature;
         TextView textViewDescription;
 
-
         public WeatherViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewNamaKota = itemView.findViewById(R.id.textKota);
             textViewTemperature = itemView.findViewById(R.id.textTemp);
             textViewDescription = itemView.findViewById(R.id.textDesc);
         }
+
         void bind(WeatherItems weatherItems) {
             textViewNamaKota.setText(weatherItems.getName());
             textViewTemperature.setText(weatherItems.getTemperature());

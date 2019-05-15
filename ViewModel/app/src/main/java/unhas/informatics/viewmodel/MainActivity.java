@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private WeatherAdapter adapter;
     private EditText edtCity;
     private ProgressBar progressBar;
+
     private MainViewModel mainViewModel;
 
     @Override

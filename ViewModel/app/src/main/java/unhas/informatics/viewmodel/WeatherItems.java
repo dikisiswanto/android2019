@@ -8,8 +8,8 @@ public class WeatherItems {
     private int id;
     private String name;
     private String currentWeather;
-    private String temperature;
     private String description;
+    private String temperature;
 
     public WeatherItems(JSONObject object) {
         try {
@@ -53,19 +53,19 @@ public class WeatherItems {
         this.currentWeather = currentWeather;
     }
 
-    public String getTemperature() {
-        return temperature;
-    }
-
-    public void setTemperature(String temperature) {
-        this.temperature = temperature;
-    }
-
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getTemperature() {
+        return temperature;
+    }
+
+    public void setTemperature(String temperature) {
+        this.temperature = temperature;
     }
 }
